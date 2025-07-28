@@ -61,7 +61,6 @@ input_dict = {
     'Is_Rush_Hour': is_rush_hour,
     'School_Age_or_PreK': school_age_or_prek,
     'Bus_Company_Name_grouped': bus_company,
-    'Route_Number_Clean_grouped': route_number,
     'Contract_Notified_Schools': int(contract_notified_schools),
     'Contract_Notified_Parents': int(contract_notified_parents),
     'Alerted_OPT': int(alerted_opt)
