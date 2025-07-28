@@ -10,7 +10,7 @@ encoder = joblib.load('target_encoder.pkl')
 scaler = joblib.load('scaler.pkl')
 threshold = joblib.load('optimal_threshold.pkl')
 
-st.title("🚌 Predict School Bus Delay Type")
+st.title("🚌 Predicting School Bus Delays and Breakdowns in NYC")
 
 st.markdown("Enter the following information:")
 
@@ -42,8 +42,6 @@ bus_company = st.selectbox("Bus Company", [
     'LITTLE RICHIE BUS SERVICE', 'SNT BUS INC', 'DON THOMAS BUSES INC',
     'Other'
 ])
-
-route_number = st.selectbox("Route Group", ['Other'])  # Only 'Other' exists in grouped
 
 contract_notified_schools = st.checkbox("Contractor Notified Schools?")
 contract_notified_parents = st.checkbox("Contractor Notified Parents?")
