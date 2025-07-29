@@ -10,7 +10,7 @@ encoder = joblib.load('target_encoder.pkl')
 scaler = joblib.load('scaler.pkl')
 threshold = joblib.load('optimal_threshold.pkl')
 
-st.title("🚌 Predicting School Bus Delays and Breakdowns in NYC")
+st.title("🚌 Predict School Bus Delay Type")
 
 st.markdown("Enter the following information:")
 
@@ -35,13 +35,26 @@ is_weekend = int(day_of_week in [5, 6])
 is_rush_hour = int(hour in [7, 8, 9, 15, 16, 17])
 school_age_or_prek = st.selectbox("Student Type", ['Pre-K', 'School-Age'])
 
-bus_company = st.selectbox("Bus Company", [
-    'L & M BUS CORP', 'BORO TRANSIT INC', 'PIONEER TRANSPORTATION CORP',
-    'PRIDE TRANSPORTATION INC', 'ALLIED TRANSIT CORP',
-    'CONSOLIDATED BUS TRANSIT INC', 'LOGAN BUS COMPANY INC',
-    'LITTLE RICHIE BUS SERVICE', 'SNT BUS INC', 'DON THOMAS BUSES INC',
-    'Other'
+bus_company = st.selectbox("Bus Company", ['L & M BUS CORP', 'BORO TRANSIT INC',
+        'PIONEER TRANSPORTATION CORP', 'PRIDE TRANSPORTATION INC',
+        'ALLIED TRANSIT CORP', 'CONSOLIDATED BUS TRANSIT INC',
+        'LOGAN BUS COMPANY INC', 'LITTLE RICHIE BUS SERVICE',
+        'SNT BUS INC', 'DON THOMAS BUSES INC', 'Other',
+        'LORINDA ENTERPRISES LTD', 'HOYT TRANSPORTATION CORP',
+        'G.V.C. LTD', 'PHILLIP BUS SERVICE INC', 'VAN TRANS LLC',
+        'ALL AMERICAN SCHOOL BUS COMPANY', 'EMPIRE STATE BUS CORP',
+        'CAREFUL BUS SERVICE INC', 'NYC SCHOOL BUS UMBRELLA SERVICES',
+        'ALINA SERVICES CORP', 'EMPIRE CHARTER SERVICE INC',
+        'LEESEL TRANSPORTATION CORP', 'QUALITY TRANSPORTATION CORP'
 ])
+
+route_number_clean = st.selectbox("Route Number",['3002A', 'K064', 'X184', 'R1218', 'L343', 'Q370', 'X028', 'P863',
+       'Q742', 'R1203', 'M1084', 'M859', 'Q664', 'P102', 'K424', '3406A',
+       'PS200', 'R349', 'L141', 'R1030', 'R1303', 'Q2901', 'M154', 'L535',
+       'X2359', 'Q818', 'X049', 'M136', 'Q337', 'R1043', 'P584', 'P783',
+       'L400', 'R007', 'X560', 'R1121', 'M124', 'M9045', 'M626', 'X2318',
+       'X112', 'P671', 'R1324', 'R1318', 'R1078', 'K1436', 'M798', 'P677',
+       'K032', 'K972'])
 
 contract_notified_schools = st.checkbox("Contractor Notified Schools?")
 contract_notified_parents = st.checkbox("Contractor Notified Parents?")
@@ -60,7 +73,8 @@ input_dict = {
     'Is_Weekend': is_weekend,
     'Is_Rush_Hour': is_rush_hour,
     'School_Age_or_PreK': school_age_or_prek,
-    'Bus_Company_Name_grouped': bus_company,
+    'Bus_Company_Name': bus_company,
+    'Route_Number_Clean': route_number_clean,
     'Contract_Notified_Schools': int(contract_notified_schools),
     'Contract_Notified_Parents': int(contract_notified_parents),
     'Alerted_OPT': int(alerted_opt)
